@@ -29,8 +29,6 @@ public class CategoriaRNTest {
 	@Test
 	public void testValidarDescricao() {
 
-		Categoria cat = new Categoria();
-
 		cat.setDescricao("Categoria a confirmar porque esse é só um exemplo para teste.");
 
 		try {
@@ -73,7 +71,7 @@ public class CategoriaRNTest {
 
 		try {
 		
-			cat.setId(id);
+			cat.setId(idNull);
 			
 			rnCat.validaIdNull(cat.getId());
 			
@@ -86,8 +84,6 @@ public class CategoriaRNTest {
 
 	@After
 	public void limparCategoria() {
-
-		Categoria cat = new Categoria();
 
 		cat = new Categoria();		
 

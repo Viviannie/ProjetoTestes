@@ -16,6 +16,7 @@ public class ClienteRNTest {
 
 	public Cliente cli;
 	public RNCliente rnCli;
+	Integer idNull = null;
 
 	@Before
 	public void init() {
@@ -117,7 +118,9 @@ public class ClienteRNTest {
 
 		try {
 			
-			rnCli.validaIdNull(null);
+			cli.setId(idNull);
+			
+			rnCli.validaIdNull(cli.getId());
 			
 		} catch (RegraException e) {
 			

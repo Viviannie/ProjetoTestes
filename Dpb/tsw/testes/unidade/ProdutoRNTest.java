@@ -65,21 +65,20 @@ public class ProdutoRNTest {
 		}		
 	}
 	
-	@Test
-	public void testValidarId() {			
+	@Test(expected = NullPointerException.class)
+	public void testValidarIdNull() {			
 
 		try {
 			
-			rnPro.validaIdNull(idNull);
+			pro.setId(idNull);
+			
+			rnPro.validaIdNull(pro.getId());
 			
 		} catch (RegraException e) {
 
 			e.printStackTrace();
 			
 		}
-
-		assertEquals("Exceção validar ID Produto OK!", rnPro);
-
 	}
 
 	@After

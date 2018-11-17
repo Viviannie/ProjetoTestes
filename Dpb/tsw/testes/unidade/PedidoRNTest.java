@@ -74,7 +74,9 @@ public class PedidoRNTest {
 
 		try {
 			
-			rnPed.validaIdNull(null);
+			ped.setId(idNull);
+			
+			rnPed.validaIdNull(ped.getId());
 			
 		} catch (RegraException e) {
 			

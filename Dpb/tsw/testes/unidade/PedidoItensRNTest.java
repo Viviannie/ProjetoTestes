@@ -13,11 +13,14 @@ import model.regra.RNPedidoItens;
 //@DisplayName("Testes de assertions para PedidoItensRN")
 public class PedidoItensRNTest {
 
-	public RNPedidoItens rnPedIt = new RNPedidoItens();
+	public PedidoItens pedIt;
+	public RNPedidoItens rnPedIt;
+	Integer idNull = null;
 
 	@Before
 	public void init() {
 
+		this.pedIt = new PedidoItens();
 		this.rnPedIt = new RNPedidoItens();
 
 	}
@@ -45,12 +48,14 @@ public class PedidoItensRNTest {
 		}		
 	}
 	
-	@Test
-	public void testValidarId() {	
+	@Test(expected = NullPointerException.class)
+	public void testValidarIdNull() {	
 
 		try {
 			
-			rnPedIt.validaId(null);
+			pedIt.setId(idNull);
+			
+			rnPedIt.validaIdNull(pedIt.getId());
 			assertEquals("Exceção validar ID PedidoItens OK!", rnPedIt);
 			
 		} catch (RegraException e) {
@@ -62,8 +67,6 @@ public class PedidoItensRNTest {
 
 	@After
 	public void limparCliente() {
-
-		PedidoItens pedIt = new PedidoItens();
 
 		pedIt = new PedidoItens();		
 

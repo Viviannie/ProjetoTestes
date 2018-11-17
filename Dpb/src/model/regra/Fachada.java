@@ -37,7 +37,7 @@ public class Fachada {
 
 	public static Fachada getInstancia() {
 
-		if(instancia == null)
+		if (instancia == null)
 
 			instancia = new Fachada();
 
@@ -45,9 +45,11 @@ public class Fachada {
 
 	}
 
-	/*#########################################################################
+	/*
+	 * #########################################################################
 	 * CATEGORIA
-	 *########################################################################*/
+	 * ########################################################################
+	 */
 	public void salvarCategoria(Categoria categoria) throws RegraException {
 
 		rnCategoria.validarCampos(categoria);
@@ -59,7 +61,8 @@ public class Fachada {
 
 	public void excluirCategoria(Categoria categoria) throws RegraException {
 
-		rnCategoria.validaId(categoria.getId());
+		rnCategoria.validaIdNull(categoria.getId());
+		rnCategoria.validaIdExistente(categoria.getId());
 		rnCategoria.excluir(categoria);
 
 	}
@@ -68,14 +71,16 @@ public class Fachada {
 
 		rnCategoria.validarCampos(categoria);
 		rnCategoria.validarDescricao(categoria);
-		rnCategoria.validaId(categoria.getId());
+		rnCategoria.validaIdNull(categoria.getId());
+		rnCategoria.validaIdExistente(categoria.getId());
 		rnCategoria.alterar(categoria);
 
 	}
 
 	public Categoria pesquisarCategoriaPorId(Categoria categoria) throws RegraException {
 
-		rnCategoria.validaId(categoria.getId());
+		rnCategoria.validaIdNull(categoria.getId());
+		rnCategoria.validaIdExistente(categoria.getId());
 		return rnCategoria.pesquisar(categoria.getId());
 
 	}
@@ -94,9 +99,11 @@ public class Fachada {
 
 	}
 
-	/*#########################################################################
+	/*
+	 * #########################################################################
 	 * CLIENTE
-	 *########################################################################*/
+	 * ########################################################################
+	 */
 	public void salvarCliente(Cliente cliente) throws RegraException {
 
 		rnCliente.validacaoBasica(cliente);
@@ -106,255 +113,284 @@ public class Fachada {
 
 	}
 
-	public void excluirCliente(Cliente cliente)throws RegraException {
+	public void excluirCliente(Cliente cliente) throws RegraException {
 
-		rnCliente.validaId(cliente.getId());
+		rnCliente.validaIdNull(cliente.getId());
+		rnCliente.validaIdExistente(cliente.getId());
 		rnCliente.excluir(cliente);
 
 	}
 
-	public void alterarCliente(Cliente cliente)throws RegraException {
+	public void alterarCliente(Cliente cliente) throws RegraException {
 
 		rnCliente.validacaoBasica(cliente);
-		rnCliente.validaId(cliente.getId());
+		rnCliente.validaIdNull(cliente.getId());
+		rnCliente.validaIdExistente(cliente.getId());
 		rnCliente.alterar(cliente);
 
 	}
 
-	public Cliente pesquisarClientePorId(Integer id)throws RegraException {
+	public Cliente pesquisarClientePorId(Cliente cliente)throws RegraException {
 
-		rnCliente.validaId(id);
-		return rnCliente.pesquisar(id);
+		rnCliente.validaIdNull(cliente.getId());
+		rnCliente.validaIdExistente(cliente.getId());
+		return rnCliente.pesquisar(cliente.getId());
 
 	}
 
-	public Cliente pesquisarClientePorCnpj(Cliente cliente)throws RegraException {
+	public Cliente pesquisarClientePorCnpj(Cliente cliente) throws RegraException {
 
 		rnCliente.validacaoBasica(cliente);
 		return rnCliente.pesquisar(cliente.getCnpj());
 
 	}
 
-	public ArrayList<Cliente> listarClientes()throws RegraException {
+	public ArrayList<Cliente> listarClientes() throws RegraException {
 
 		return rnCliente.listar();
 
 	}
 
-	/*#########################################################################
+	/*
+	 * #########################################################################
 	 * PEDIDO
-	 *########################################################################*/
+	 * ########################################################################
+	 */
 	public void salvarPedido(Pedido pedido) throws RegraException {
-		
+
 		rnPedido.verificaDuplicidade(pedido);
 		rnPedido.incluir(pedido);
-		
+
 	}
-	
-	public void alterarPedido(Pedido pedido) throws RegraException{
-		
-		rnPedido.validaId(pedido.getId());
+
+	public void alterarPedido(Pedido pedido) throws RegraException {
+
+		rnPedido.validaIdNull(pedido.getId());
+		rnPedido.validaIdExistente(pedido.getId());
 		rnPedido.alterar(pedido);
 	}
 
 	public void excluirPedido(Pedido pedido) throws RegraException {
-		
-		rnPedido.validaId(pedido.getId());
+
+		rnPedido.validaIdNull(pedido.getId());
+		rnPedido.validaIdExistente(pedido.getId());
 		rnPedido.excluir(pedido);
-		
+
 	}
 
-	public Pedido pesquisarPedidoPorId(Integer id) throws RegraException {
-		
-		rnPedido.validaId(id);
-		return rnPedido.pesquisar(id);
-		
+	public Pedido pesquisarPedidoPorId(Pedido pedido) throws RegraException {
+
+		rnPedido.validaIdNull(pedido.getId());
+		rnPedido.validaIdExistente(pedido.getId());
+		return rnPedido.pesquisar(pedido.getId());
+
 	}
 
-	public ArrayList<Pedido> listarPedidos()throws RegraException {
-		
+	public ArrayList<Pedido> listarPedidos() throws RegraException {
+
 		return rnPedido.listar();
-		
+
 	}
 
-	/*#########################################################################
+	/*
+	 * #########################################################################
 	 * PRODUTO
-	 *########################################################################*/
+	 * ########################################################################
+	 */
 	public void salvarProduto(Produto produto) throws RegraException {
-		
+
 		rnProduto.validarCampos(produto);
 		rnProduto.validarDescricao(produto);
 		rnProduto.verificaDuplicidade(produto);
 		rnProduto.incluir(produto);
-		
+
 	}
-	
+
 	public void alterarProduto(Produto produto) throws RegraException {
-		
+
 		rnProduto.validarCampos(produto);
 		rnProduto.validarDescricao(produto);
-		rnProduto.validaId(produto.getId());
+		rnProduto.validaIdNull(produto.getId());
 		rnProduto.alterar(produto);
-		
+
 	}
 
 	public void excluirProduto(Produto produto) throws RegraException {
-		
-		rnProduto.validaId(produto.getId());
+
+		rnProduto.validaIdNull(produto.getId());
+		rnProduto.validaIdExistente(produto.getId());
 		rnProduto.excluir(produto);
-		
+
 	}
-	
-	public Produto pesquisarProdutoPorId(Integer id) throws RegraException {
-		
-		rnProduto.validaId(id);
-		return rnProduto.pesquisar(id);
-		
+
+	public Produto pesquisarProdutoPorId(Produto produto) throws RegraException {
+
+		rnProduto.validaIdNull(produto.getId());
+		rnProduto.validaIdExistente(produto.getId());
+		return rnProduto.pesquisar(produto.getId());
+
 	}
 
 	public Produto pesquisarProdutoPorDescricao(Produto produto) throws RegraException {
-		
+
 		rnProduto.validarCampos(produto);
 		rnProduto.validarDescricao(produto);
 		return rnProduto.pesquisar(produto.getDescricao());
-		
+
 	}
 
 	public ArrayList<Produto> listarProdutos() throws RegraException {
-		
+
 		return rnProduto.listar();
-		
+
 	}
 
-	/*#########################################################################
+	/*
+	 * #########################################################################
 	 * VENDEDOR
-	 *########################################################################*/
+	 * ########################################################################
+	 */
 	public void salvarVendedor(Vendedor vendedor) throws RegraException {
-		
+
 		rnVendedor.validarCampos(vendedor);
 		rnVendedor.verificaDuplicidade(vendedor);
 		rnVendedor.incluir(vendedor);
-		
+
 	}
-	
+
 	public void alterarVendedor(Vendedor vendedor) throws RegraException {
-		
+
 		rnVendedor.validarCampos(vendedor);
-		rnVendedor.validaId(vendedor.getId());
+		rnVendedor.validaIdNull(vendedor.getId());
 		rnVendedor.alterar(vendedor);
-		
+
 	}
 
 	public void excluirVendedor(Vendedor vendedor) throws RegraException {
-		
-		rnVendedor.validaId(vendedor.getId());
+
+		rnVendedor.validaIdNull(vendedor.getId());
 		rnVendedor.excluir(vendedor);
-		
+
 	}
 
-	public Vendedor pesquisarVendedorPorId(Integer id) throws RegraException {
-		
-		rnVendedor.validaId(id);
-		return rnVendedor.pesquisar(id);
-		
+	public Vendedor pesquisarVendedorPorId(Vendedor vendedor) throws RegraException {
+
+		rnVendedor.validaIdNull(vendedor.getId());
+		rnVendedor.validaIdExistente(vendedor.getId());
+		return rnVendedor.pesquisar(vendedor.getId());
+
 	}
 
 	public Vendedor pesquisarVendedorPorCpf(Vendedor vendedor) throws RegraException {
-		
+
 		rnVendedor.validarCampos(vendedor);
 		return rnVendedor.pesquisar(vendedor.getCpf());
-		
+
 	}
 
 	public ArrayList<Vendedor> listarVendedores() throws RegraException {
-		
+
 		return rnVendedor.listar();
-		
+
 	}
-	
-	/*#########################################################################
+
+	/*
+	 * #########################################################################
 	 * PEDIDOITENS
-	 *########################################################################*/
+	 * ########################################################################
+	 */
 	public void salvarPedidoItens(PedidoItens pedidoItens) throws RegraException {
-		
+
 		rnPedidoItens.verificaDuplicidade(pedidoItens);
+		rnPedidoItens.validaIdNull(pedidoItens.getId());
+		rnPedidoItens.validaIdExistente(pedidoItens.getId());
 		rnPedidoItens.incluir(pedidoItens);
-		
+
 	}
-	
+
 	public void alterarVendedor(PedidoItens pedidoItens) throws RegraException {
-		
-		rnPedidoItens.validaId(pedidoItens.getId());
+
+		rnPedidoItens.validaIdNull(pedidoItens.getId());
+		rnPedidoItens.validaIdExistente(pedidoItens.getId());
 		rnPedidoItens.alterar(pedidoItens);
-		
+
 	}
 
 	public void excluirVendedor(PedidoItens pedidoItens) throws RegraException {
-		
-		rnPedidoItens.validaId(pedidoItens.getId());
+
+		rnPedidoItens.validaIdNull(pedidoItens.getId());
+		rnPedidoItens.validaIdExistente(pedidoItens.getId());
 		rnPedidoItens.excluir(pedidoItens);
-		
+
 	}
 
-	public PedidoItens pesquisarPedidoItensPorId(Integer id) throws RegraException {
-		
-		rnPedidoItens.validaId(id);
-		return rnPedidoItens.pesquisar(id);
-		
+	public PedidoItens pesquisarPedidoItensPorId(PedidoItens pedidoItens) throws RegraException {
+
+		rnPedidoItens.validaIdNull(pedidoItens.getId());
+		rnPedidoItens.validaIdExistente(pedidoItens.getId());
+		return rnPedidoItens.pesquisar(pedidoItens.getId());
+
 	}
 
 	public ArrayList<PedidoItens> listarPedidoItens() throws RegraException {
-		
+
 		return rnPedidoItens.listar();
-		
+
 	}
-	
-	/*#########################################################################
+
+	/*
+	 * #########################################################################
 	 * STATUSPEDIDO
-	 *########################################################################*/
+	 * ########################################################################
+	 */
 	public void salvarStatusPedido(StatusPedido statusPedido) throws RegraException {
-		
+
 		rnStatusPedido.validarCampos(statusPedido);
 		rnStatusPedido.validarDescricao(statusPedido);
 		rnStatusPedido.verificaDuplicidade(statusPedido);
 		rnStatusPedido.incluir(statusPedido);
-		
+
 	}
-	
+
 	public void alterarStatusPedido(StatusPedido statusPedido) throws RegraException {
-		
+
 		rnStatusPedido.validarCampos(statusPedido);
 		rnStatusPedido.validarDescricao(statusPedido);
-		rnStatusPedido.validaId(statusPedido.getId());
+		rnStatusPedido.validaIdNull(statusPedido.getId());
+		rnStatusPedido.validaIdExistente(statusPedido.getId());
 		rnStatusPedido.alterar(statusPedido);
-		
+
 	}
 
 	public void excluirStatusPedido(StatusPedido statusPedido) throws RegraException {
-		
-		rnStatusPedido.validaId(statusPedido.getId());
+
+		rnStatusPedido.validaIdNull(statusPedido.getId());
+		rnStatusPedido.validaIdExistente(statusPedido.getId());
 		rnStatusPedido.excluir(statusPedido);
-		
+
 	}
 
-	public StatusPedido pesquisarStatusPedidoPorId(Integer id) throws RegraException {
-		
-		rnStatusPedido.validaId(id);
-		return rnStatusPedido.pesquisar(id);
-		
+	public StatusPedido pesquisarStatusPedidoPorId(StatusPedido statusPedido) throws RegraException {
+
+		rnStatusPedido.validaIdNull(statusPedido.getId());
+		rnStatusPedido.validaIdExistente(statusPedido.getId());
+		return rnStatusPedido.pesquisar(statusPedido.getId());
+
 	}
 
 	public StatusPedido pesquisarVendedorPorDescricao(StatusPedido statusPedido) throws RegraException {
-		
+
 		rnStatusPedido.validarCampos(statusPedido);
 		rnStatusPedido.validarDescricao(statusPedido);
+		rnStatusPedido.validaIdNull(statusPedido.getId());
+		rnStatusPedido.validaIdExistente(statusPedido.getId());
 		return rnStatusPedido.pesquisar(statusPedido.getDescricao());
-		
+
 	}
 
 	public ArrayList<StatusPedido> listarStatusPedidos() throws RegraException {
-		
+
 		return rnStatusPedido.listar();
-		
+
 	}
 }
