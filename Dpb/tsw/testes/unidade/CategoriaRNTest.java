@@ -15,11 +15,14 @@ import model.regra.RNCategoria;
 public class CategoriaRNTest {
 
 	public RNCategoria rnCat = new RNCategoria();
+	public Categoria cat = new Categoria();
+	Integer idNull = null;
 
 	@Before
 	public void init() {
 
 		this.rnCat = new RNCategoria();
+		this.cat = new Categoria();
 
 	}
 
@@ -66,33 +69,20 @@ public class CategoriaRNTest {
 	}
 	
 	@Test(expected = NullPointerException.class)
-	public void testValidarId() {
+	public void testValidarIdNull() {
 
 		try {
-			rnCat.validaId(null);
+		
+			cat.setId(id);
+			
+			rnCat.validaIdNull(cat.getId());
+			
 		} catch (RegraException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
-		}
-
-		assertEquals("Exceção validar ID categoria OK!", rnCat);
+			
+		}		
 	}
-
-//	@Test
-//	public void testValidarId() {
-//
-//		RegraException exception = null;
-//
-//		RegraException e = assertThrows(RegraException.class,
-//				() -> {					
-//
-//					rnCat.validaId(null);
-//
-//					assertEquals("Exceção validar ID categoria OK!", exception.getMessage());
-//
-//				});
-//
-//	}
 
 	@After
 	public void limparCategoria() {

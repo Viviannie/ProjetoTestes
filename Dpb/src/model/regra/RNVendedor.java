@@ -19,20 +19,20 @@ public class RNVendedor {
 
 			dao.incluir(vendedor);
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
 		}
 	}
 
-	public void alterar(Vendedor vendedor)throws RegraException {
+	public void alterar(Vendedor vendedor) throws RegraException {
 
 		try {
 
 			dao.alterar(vendedor);
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
@@ -45,7 +45,7 @@ public class RNVendedor {
 
 			dao.excluir(vendedor);
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
@@ -58,7 +58,7 @@ public class RNVendedor {
 
 			return dao.pesquisar(id);
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
@@ -71,12 +71,12 @@ public class RNVendedor {
 
 			return dao.pesquisar(cpf);
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
 		}
-	}	
+	}
 
 	public ArrayList<Vendedor> listar() throws RegraException {
 
@@ -84,11 +84,11 @@ public class RNVendedor {
 
 			return dao.listar();
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
-		}        
+		}
 	}
 
 	public void validarCampos(Vendedor vendedor) throws RegraException {
@@ -105,47 +105,54 @@ public class RNVendedor {
 
 		}
 
-		if ((vendedor.getEmail() == null) || (vendedor.getEmail().trim().equals("")) || (vendedor.getEmail().isEmpty())) {
+		if ((vendedor.getEmail() == null) || (vendedor.getEmail().trim().equals(""))
+				|| (vendedor.getEmail().isEmpty())) {
 
 			throw new RegraException("E-mail inválido!");
 
 		}
 
-		if ((vendedor.getSenha() == null) || (vendedor.getSenha().trim().equals("")) || (vendedor.getSenha().isEmpty())) {
+		if ((vendedor.getSenha() == null) || (vendedor.getSenha().trim().equals(""))
+				|| (vendedor.getSenha().isEmpty())) {
 
 			throw new RegraException("Senha inválida!");
 
 		}
 
-		if ((vendedor.getLogradouro() == null) || (vendedor.getLogradouro().trim().equals("") || (vendedor.getLogradouro().isEmpty()))) {
+		if ((vendedor.getLogradouro() == null)
+				|| (vendedor.getLogradouro().trim().equals("") || (vendedor.getLogradouro().isEmpty()))) {
 
 			throw new RegraException("Logradouro inválido!");
 
 		}
 
-		if ((vendedor.getNumero() == null) || (vendedor.getNumero().trim().equals("") || (vendedor.getNumero().isEmpty()))) {
+		if ((vendedor.getNumero() == null)
+				|| (vendedor.getNumero().trim().equals("") || (vendedor.getNumero().isEmpty()))) {
 
 			throw new RegraException("Número inválido!");
 
 		}
 
-		if ((vendedor.getBairro() == null) || (vendedor.getBairro().trim().equals("") || (vendedor.getBairro().isEmpty()))) {
+		if ((vendedor.getBairro() == null)
+				|| (vendedor.getBairro().trim().equals("") || (vendedor.getBairro().isEmpty()))) {
 
 			throw new RegraException("Bairro inválido!");
 
 		}
 
-		if ((vendedor.getCidade() == null) || (vendedor.getCidade().trim().equals("") || (vendedor.getCidade().isEmpty()))) {
+		if ((vendedor.getCidade() == null)
+				|| (vendedor.getCidade().trim().equals("") || (vendedor.getCidade().isEmpty()))) {
 
 			throw new RegraException("Cidade inválido!");
 
 		}
 
-		if ((vendedor.getEstado() == null) || (vendedor.getEstado().trim().equals("") || (vendedor.getEstado().isEmpty()))) {
+		if ((vendedor.getEstado() == null)
+				|| (vendedor.getEstado().trim().equals("") || (vendedor.getEstado().isEmpty()))) {
 
 			throw new RegraException("Estado inválido!");
 
-		}				
+		}
 	}
 
 	public boolean validarNome(Vendedor vendedor) throws RegraException {
@@ -178,44 +185,47 @@ public class RNVendedor {
 
 			Vendedor x = dao.pesquisar(vendedor.getId());
 
-			if(x != null) {
+			if (x != null) {
 
 				throw new RegraException("Vendedor já existe.");
 
 			}
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
 		}
-		
+
 		return vendedor;
-		
+
 	}
 
-	public void validaId(Integer id) throws RegraException {
+	public void validaIdNull(Integer id) throws RegraException {
 
-		if(id == null) {
+		if (id == null) {
 
 			throw new RegraException("Id inválido!");
 
 		}
+	}
+
+	public void validaIdExistente(Integer id) throws RegraException {
 
 		try {
 
 			Vendedor x = dao.pesquisar(id);
 
-			if(x == null) {
+			if (x != null) {
 
-				throw new RegraException("Id informado não existe.");
+				throw new RegraException("Id informado existe.");
 
 			}
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
-		}        
+		}
 	}
 }

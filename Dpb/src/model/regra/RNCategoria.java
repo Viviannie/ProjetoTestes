@@ -10,7 +10,7 @@ import model.excecoes.DAOException;
 import model.excecoes.RegraException;
 
 public class RNCategoria {
-	
+
 	private final DAOCategoria dao = new DAOCategoriaImpl();
 
 	public void incluir(Categoria categoria) throws RegraException {
@@ -19,20 +19,20 @@ public class RNCategoria {
 
 			dao.incluir(categoria);
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
 		}
 	}
 
-	public void alterar(Categoria categoria)throws RegraException {
+	public void alterar(Categoria categoria) throws RegraException {
 
 		try {
 
 			dao.alterar(categoria);
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
@@ -42,10 +42,10 @@ public class RNCategoria {
 	public void excluir(Categoria categoria) throws RegraException {
 
 		try {
-			
+
 			dao.excluir(categoria);
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
@@ -58,7 +58,7 @@ public class RNCategoria {
 
 			return dao.pesquisar(id);
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
@@ -68,15 +68,15 @@ public class RNCategoria {
 	public Categoria pesquisar(String descricao) throws RegraException {
 
 		try {
-			
+
 			return dao.pesquisar(descricao);
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
 		}
-	}	
+	}
 
 	public ArrayList<Categoria> listar() throws RegraException {
 
@@ -84,22 +84,23 @@ public class RNCategoria {
 
 			return dao.listar();
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
-		}        
+		}
 	}
 
 	public void validarCampos(Categoria categoria) throws RegraException {
 
-		if ((categoria.getDescricao() == null) || (categoria.getDescricao().trim().equals("")) || (categoria.getDescricao().isEmpty())) {
+		if ((categoria.getDescricao() == null) || (categoria.getDescricao().trim().equals(""))
+				|| (categoria.getDescricao().isEmpty())) {
 
 			throw new RegraException("Descrição inválida!");
 
-		}	
+		}
 	}
-	
+
 	public boolean validarDescricao(Categoria categoria) throws RegraException {
 
 		return categoria.getDescricao().length() > 25;
@@ -112,44 +113,47 @@ public class RNCategoria {
 
 			Categoria x = dao.pesquisar(categoria.getId());
 
-			if(x != null) {
+			if (x != null) {
 
 				throw new RegraException("Categoria já existe.");
 
 			}
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
 		}
-		
+
 		return categoria;
-		
+
 	}
 
-	public void validaId(Integer id) throws RegraException {
+	public void validaIdNull(Integer id) throws RegraException {
 
-		if(id == null) {
+		if (id == null) {
 
 			throw new RegraException("Id inválido!");
 
 		}
+	}
+
+	public void validaIdExistente(Integer id) throws RegraException {
 
 		try {
 
 			Categoria x = dao.pesquisar(id);
 
-			if(x == null) {
+			if (x != null) {
 
-				throw new RegraException("Id informado não existe.");
+				throw new RegraException("Id informado existe.");
 
 			}
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
-		}        
+		}
 	}
 }

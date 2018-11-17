@@ -10,7 +10,7 @@ import model.excecoes.DAOException;
 import model.excecoes.RegraException;
 
 public class RNPedido {
-	
+
 	private final DAOPedido dao = new DAOPedidoImpl();
 
 	public void incluir(Pedido pedido) throws RegraException {
@@ -19,20 +19,20 @@ public class RNPedido {
 
 			dao.incluir(pedido);
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
 		}
 	}
 
-	public void alterar(Pedido pedido)throws RegraException {
+	public void alterar(Pedido pedido) throws RegraException {
 
 		try {
 
 			dao.alterar(pedido);
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
@@ -42,10 +42,10 @@ public class RNPedido {
 	public void excluir(Pedido pedido) throws RegraException {
 
 		try {
-			
+
 			dao.excluir(pedido);
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
@@ -58,7 +58,7 @@ public class RNPedido {
 
 			return dao.pesquisar(id);
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
@@ -71,32 +71,32 @@ public class RNPedido {
 
 			return dao.listar();
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
-		}        
+		}
 	}
-	
+
 	public void validarCampos(Pedido pedido) throws RegraException {
 
 		if (pedido.getCliente() == null) {
 
 			throw new RegraException("Cliente inválido!");
 
-		}	
-		
+		}
+
 		if (pedido.getVendedor() == null) {
 
 			throw new RegraException("Vendedor inválido!");
 
 		}
-		
+
 		if (pedido.getStatusPedido() == null) {
 
 			throw new RegraException("Status do pedido inválido!");
 
-		}		
+		}
 	}
 
 	public Pedido verificaDuplicidade(Pedido pedido) throws RegraException {
@@ -105,44 +105,47 @@ public class RNPedido {
 
 			Pedido x = dao.pesquisar(pedido.getId());
 
-			if(x != null) {
+			if (x != null) {
 
 				throw new RegraException("Pedido já existe.");
 
 			}
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
 		}
-		
+
 		return pedido;
-		
+
 	}
 
-	public void validaId(Integer id) throws RegraException {
+	public void validaIdNull(Integer id) throws RegraException {
 
-		if(id == null) {
+		if (id == null) {
 
 			throw new RegraException("Id inválido!");
 
 		}
+	}
+
+	public void validaIdExistente(Integer id) throws RegraException {
 
 		try {
 
 			Pedido x = dao.pesquisar(id);
 
-			if(x == null) {
+			if (x != null) {
 
-				throw new RegraException("Id informado não existe.");
+				throw new RegraException("Id informado existe.");
 
 			}
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
-		}        
+		}
 	}
 }

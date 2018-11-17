@@ -21,7 +21,6 @@ public class PedidoItensRNTest {
 		this.rnPedIt = new RNPedidoItens();
 
 	}
-	
 
 	@Test
 	public void testValidarDuplicidadeId() {
@@ -50,14 +49,15 @@ public class PedidoItensRNTest {
 	public void testValidarId() {	
 
 		try {
+			
 			rnPedIt.validaId(null);
+			assertEquals("Exceção validar ID PedidoItens OK!", rnPedIt);
+			
 		} catch (RegraException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
+			
 		}
-
-		assertEquals("Exceção validar ID PedidoItens OK!", rnPedIt);
-
 	}
 
 	@After

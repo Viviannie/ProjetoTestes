@@ -13,35 +13,37 @@ import model.regra.RNPedido;
 //@DisplayName("Testes de assertions para PedidoRN")
 public class PedidoRNTest {
 
-	public RNPedido rnPed = new RNPedido();
+	public Pedido ped;
+	public RNPedido rnPed;
+	Integer idNull = null;
 
 	@Before
 	public void init() {
 
+		this.ped = new Pedido();
 		this.rnPed = new RNPedido();
 
 	}
 	
 	@Test(expected = NullPointerException.class)
-	public void testePedidoRegraException() {		
+	public void testePedidoIncluirNulo() {		
+		
+		ped.setCliente(null);
+		ped.setStatusPedido(null);
+		ped.setVendedor(null);
+		ped.setDataPedido(null);
+		ped.setDataEnvio(null);
+		ped.setId(idNull);
 
-		Pedido ped = new Pedido();	
+		try {
 
-					ped.setCliente(null);
-					ped.setStatusPedido(null);
-					ped.setVendedor(null);
-					ped.setDataPedido(null);
-					ped.setDataEnvio(null);
-					ped.setId(0);
+			rnPed.incluir(ped);
 
-					try {
-						rnPed.incluir(ped);
-					} catch (RegraException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+		} catch (RegraException e) {
 
-					assertEquals("Exceção validar RegraException Pedido OK!", rnPed);
+			e.printStackTrace();
+
+		}
 	}
 
 	@Test
@@ -66,25 +68,23 @@ public class PedidoRNTest {
 			
 		}		
 	}
-	
-	@Test
-	public void testValidarId() {
+		
+	@Test(expected = NullPointerException.class)
+	public void testValidarIdNull() {				
 
 		try {
-			rnPed.validaId(null);
+			
+			rnPed.validaIdNull(null);
+			
 		} catch (RegraException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
+			
 		}
-
-		assertEquals("Exceção validar ID Pedido OK!", rnPed);
-
 	}
 
 	@After
 	public void limparCliente() {
-
-		Pedido ped = new Pedido();
 
 		ped = new Pedido();		
 

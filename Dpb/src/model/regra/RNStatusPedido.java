@@ -19,20 +19,20 @@ public class RNStatusPedido {
 
 			dao.incluir(statusPedido);
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
 		}
 	}
 
-	public void alterar(StatusPedido statusPedido)throws RegraException {
+	public void alterar(StatusPedido statusPedido) throws RegraException {
 
 		try {
 
 			dao.alterar(statusPedido);
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
@@ -42,10 +42,10 @@ public class RNStatusPedido {
 	public void excluir(StatusPedido statusPedido) throws RegraException {
 
 		try {
-			
+
 			dao.excluir(statusPedido);
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
@@ -58,7 +58,7 @@ public class RNStatusPedido {
 
 			return dao.pesquisar(id);
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
@@ -68,15 +68,15 @@ public class RNStatusPedido {
 	public StatusPedido pesquisar(String descricao) throws RegraException {
 
 		try {
-			
+
 			return dao.pesquisar(descricao);
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
 		}
-	}	
+	}
 
 	public ArrayList<StatusPedido> listar() throws RegraException {
 
@@ -84,26 +84,27 @@ public class RNStatusPedido {
 
 			return dao.listar();
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
-		}        
+		}
 	}
 
 	public void validarCampos(StatusPedido statusPedido) throws RegraException {
 
-		if ((statusPedido.getDescricao() == null) || (statusPedido.getDescricao().trim().equals("")) || (statusPedido.getDescricao().isEmpty())) {
+		if ((statusPedido.getDescricao() == null) || (statusPedido.getDescricao().trim().equals(""))
+				|| (statusPedido.getDescricao().isEmpty())) {
 
 			throw new RegraException("Descrição inválida!");
 
 		}
 	}
-	
+
 	public boolean validarDescricao(StatusPedido statusPedido) throws RegraException {
 
 		return statusPedido.getDescricao().length() > 25;
-		
+
 	}
 
 	public StatusPedido verificaDuplicidade(StatusPedido statusPedido) throws RegraException {
@@ -112,44 +113,47 @@ public class RNStatusPedido {
 
 			StatusPedido x = dao.pesquisar(statusPedido.getId());
 
-			if(x != null) {
+			if (x != null) {
 
 				throw new RegraException("Status do pedido já existe.");
 
 			}
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
 		}
-		
+
 		return statusPedido;
-		
+
 	}
 
-	public void validaId(Integer id) throws RegraException {
+	public void validaIdNull(Integer id) throws RegraException {
 
-		if(id == null) {
+		if (id == null) {
 
 			throw new RegraException("Id inválido!");
 
 		}
+	}
+
+	public void validaIdExistente(Integer id) throws RegraException {
 
 		try {
 
 			StatusPedido x = dao.pesquisar(id);
 
-			if(x == null) {
+			if (x != null) {
 
-				throw new RegraException("Id informado não existe.");
+				throw new RegraException("Id informado existe.");
 
 			}
 
-		} catch(ConexaoException | DAOException e) {
+		} catch (ConexaoException | DAOException e) {
 
 			throw new RegraException(e.getMessage());
 
-		}        
+		}
 	}
 }

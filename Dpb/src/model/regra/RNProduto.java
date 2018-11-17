@@ -146,21 +146,24 @@ public class RNProduto {
 		
 	}
 
-	public void validaId(Integer id) throws RegraException {
+	public void validaIdNull(Integer id) throws RegraException {
 
 		if(id == null) {
 
 			throw new RegraException("Id inválido!");
 
 		}
-
+	}
+	
+	public void validaIdExistente(Integer id) throws RegraException {
+		
 		try {
 
 			Produto x = dao.pesquisar(id);
 
-			if(x == null) {
+			if(x != null) {
 
-				throw new RegraException("Id informado não existe.");
+				throw new RegraException("Id informado existe.");
 
 			}
 

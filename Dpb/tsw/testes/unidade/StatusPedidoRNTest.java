@@ -14,25 +14,26 @@ import model.regra.RNStatusPedido;
 //@DisplayName("Testes de assertions para StatusPedidoRN")
 public class StatusPedidoRNTest {
 
-	public RNStatusPedido rnStatPed = new RNStatusPedido();
+	public StatusPedido stPed;
+	public RNStatusPedido rnStPed;
+	Integer idNull = null;
 
 	@Before
 	public void init() {
 
-		this.rnStatPed = new RNStatusPedido();
+		this.stPed = new StatusPedido();
+		this.rnStPed = new RNStatusPedido();
 
 	}
 	
 	@Test
 	public void testValidarDescricao() {
-
-		StatusPedido statPed = new StatusPedido();
-
-		statPed.setDescricao("StatusPedidoRN teste descricão.");
+		
+		stPed.setDescricao("StatusPedidoRN teste descricão.");
 
 		try {
 
-			assertTrue("Exceção validar Descrição StatusPedido OK!", rnStatPed.validarDescricao(statPed));
+			assertTrue("Exceção validar Descrição StatusPedido OK!", rnStPed.validarDescricao(stPed));
 
 		} catch (RegraException e) {
 
@@ -42,22 +43,20 @@ public class StatusPedidoRNTest {
 	}
 	
 	@Test(expected = NullPointerException.class)
-	public void testeStatusPedidoRegraException() {		
+	public void testeStatusPedidoNull() {		
 
-		StatusPedido statPed = new StatusPedido();
-
-		statPed.setDescricao(null);
-		statPed.setId(0);
+		stPed.setDescricao(null);
+		stPed.setId(idNull);
 
 		try {
-			rnStatPed.incluir(statPed);
+			
+			rnStPed.incluir(stPed);
+			
 		} catch (RegraException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
+			
 		}
-
-		assertEquals("Exceção validar RegraException StatusPedido OK!", rnStatPed);
-
 	}
 
 	@Test
@@ -71,10 +70,10 @@ public class StatusPedidoRNTest {
 
 		try {
 			
-			rnStatPed.incluir(statPed1);
-			rnStatPed.incluir(statPed2);
+			rnStPed.incluir(statPed1);
+			rnStPed.incluir(statPed2);
 			
-			assertEquals("Pedido já existe.", rnStatPed.verificaDuplicidade(statPed1), rnStatPed.verificaDuplicidade(statPed2));
+			assertEquals("Pedido já existe.", rnStPed.verificaDuplicidade(statPed1), rnStPed.verificaDuplicidade(statPed2));
 			
 		} catch (RegraException e) {
 
@@ -83,26 +82,27 @@ public class StatusPedidoRNTest {
 		}		
 	}
 	
-	@Test
-	public void testValidarId() {		
-
+	@Test(expected = NullPointerException.class)
+	public void testValidarIdNull() {
+		
 		try {
-			rnStatPed.validaId(null);
+			
+			Integer id = null;
+			stPed.setId(id);
+			
+			rnStPed.validaIdNull(stPed.getId());
+			
 		} catch (RegraException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
-		}
-
-		assertEquals("Exceção validar ID StatusPedido OK!", rnStatPed	);
-
+			
+		}		
 	}
 
 	@After
 	public void limparCliente() {
 
-		StatusPedido statPed = new StatusPedido();
-
-		statPed = new StatusPedido();		
+		stPed = new StatusPedido();		
 
 	}
 }

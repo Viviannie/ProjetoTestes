@@ -14,19 +14,19 @@ import model.regra.RNCliente;
 //@DisplayName("Testes de assertions para ClienteRN")
 public class ClienteRNTest {
 
-	public RNCliente rnCli = new RNCliente();
+	public Cliente cli;
+	public RNCliente rnCli;
 
 	@Before
 	public void init() {
 
+		this.cli = new Cliente();
 		this.rnCli = new RNCliente();
 
 	}
 
 	@Test
 	public void testValidarRazaoSocial() {
-
-		Cliente cli = new Cliente();
 
 		cli.setRazaoSocial("Descartáveis Multi Plásticos do Brasil Ltda.");
 
@@ -44,8 +44,6 @@ public class ClienteRNTest {
 	@Test
 	public void testValidarNomeFantasia() {
 
-		Cliente cli = new Cliente();
-
 		cli.setNomeFantasia("Multi Descartáveis Plásticos.");
 
 		try {
@@ -61,8 +59,6 @@ public class ClienteRNTest {
 
 	@Test
 	public void testValidarCnpj() {
-
-		Cliente cli = new Cliente();
 
 		cli.setCnpj("1234567891234564");
 
@@ -80,8 +76,6 @@ public class ClienteRNTest {
 	@Test
 	public void testValidarEmail() {
 
-		Cliente cli = new Cliente();
-
 		cli.setEmail("annievivianelessadacunhasantanabezerradasilva@gmail.com");
 
 		try {
@@ -95,7 +89,7 @@ public class ClienteRNTest {
 		}	
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void testValidarDuplicidadeCnpj() {
 
 		Cliente cli1 = new Cliente();
@@ -119,23 +113,21 @@ public class ClienteRNTest {
 	}
 	
 	@Test(expected = NullPointerException.class)
-	public void testValidarId() {				
+	public void testValidarIdNull() {				
 
 		try {
-			rnCli.validaId(null);
+			
+			rnCli.validaIdNull(null);
+			
 		} catch (RegraException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
+			
 		}
-
-		assertEquals("Exceção validar ID Cliente OK!", rnCli);
-
 	}
 
 	@After
 	public void limparCliente() {
-
-		Cliente cli = new Cliente();
 
 		cli = new Cliente();		
 

@@ -14,19 +14,20 @@ import model.regra.RNProduto;
 //@DisplayName("Testes de assertions para ProdutoRN")
 public class ProdutoRNTest {
 
-	public RNProduto rnPro = new RNProduto();
+	public Produto pro;
+	public RNProduto rnPro;
+	Integer idNull = null;
 
 	@Before
 	public void init() {
 
+		this.pro = new Produto();
 		this.rnPro = new RNProduto();
 
 	}
 	
 	@Test
 	public void testValidarDescricao() {
-
-		Produto pro = new Produto();
 
 		pro.setDescricao("ProdutoRN teste descricão.");
 
@@ -68,10 +69,13 @@ public class ProdutoRNTest {
 	public void testValidarId() {			
 
 		try {
-			rnPro.validaId(null);
+			
+			rnPro.validaIdNull(idNull);
+			
 		} catch (RegraException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
+			
 		}
 
 		assertEquals("Exceção validar ID Produto OK!", rnPro);
@@ -80,8 +84,6 @@ public class ProdutoRNTest {
 
 	@After
 	public void limparCliente() {
-
-		Produto pro = new Produto();
 
 		pro = new Produto();		
 
