@@ -11,7 +11,6 @@ import model.classesbasicas.Vendedor;
 import model.excecoes.RegraException;
 import model.regra.RNVendedor;
 
-//@DisplayName("Testes de assertions para VendedorRN")
 public class VendedorRNTest {
 
 	public Vendedor vend;

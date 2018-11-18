@@ -10,7 +10,6 @@ import model.classesbasicas.Pedido;
 import model.excecoes.RegraException;
 import model.regra.RNPedido;
 
-//@DisplayName("Testes de assertions para PedidoRN")
 public class PedidoRNTest {
 
 	public Pedido ped;

@@ -13,7 +13,6 @@ import testes.unidade.StatusPedidoRNTest;
 import testes.unidade.VendedorRNTest;
 
 @RunWith(Suite.class)
-
 @SuiteClasses({CategoriaRNTest.class, 
 			   ClienteRNTest.class, 
 			   PedidoRNTest.class, 

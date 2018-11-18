@@ -11,7 +11,6 @@ import model.classesbasicas.Cliente;
 import model.excecoes.RegraException;
 import model.regra.RNCliente;
 
-//@DisplayName("Testes de assertions para ClienteRN")
 public class ClienteRNTest {
 
 	public Cliente cli;

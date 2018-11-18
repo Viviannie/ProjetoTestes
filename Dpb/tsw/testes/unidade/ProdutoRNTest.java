@@ -11,7 +11,6 @@ import model.classesbasicas.Produto;
 import model.excecoes.RegraException;
 import model.regra.RNProduto;
 
-//@DisplayName("Testes de assertions para ProdutoRN")
 public class ProdutoRNTest {
 
 	public Produto pro;

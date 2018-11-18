@@ -11,7 +11,6 @@ import model.classesbasicas.StatusPedido;
 import model.excecoes.RegraException;
 import model.regra.RNStatusPedido;
 
-//@DisplayName("Testes de assertions para StatusPedidoRN")
 public class StatusPedidoRNTest {
 
 	public StatusPedido stPed;

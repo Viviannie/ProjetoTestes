@@ -11,7 +11,6 @@ import model.classesbasicas.Categoria;
 import model.excecoes.RegraException;
 import model.regra.RNCategoria;
 
-//@DisplayName("Testes de assertions para CategoriaRN")
 public class CategoriaRNTest {
 
 	public RNCategoria rnCat = new RNCategoria();
