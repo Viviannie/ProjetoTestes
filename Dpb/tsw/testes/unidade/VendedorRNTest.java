@@ -1,5 +1,7 @@
 package testes.unidade;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,12 +24,13 @@ public class VendedorRNTest {
 
 	}
 
-	@Test(expected = RegraException.class)
-	public void testValidarNome() throws RegraException {
+	@Test
+	public void testValidarNome() {
 
 		vend.setNome("Annie Viviane Lessa da Cunha Santana Bezerra da Silva");
 
-		rnVend.validarNome(vend);
+		boolean retorno = rnVend.validarNome(vend);
+		assertTrue(retorno);
 
 	}
 
@@ -58,7 +61,7 @@ public class VendedorRNTest {
 
 	}
 
-	@Test(expected = RegraException.class)
+	@Test(expected = NullPointerException.class)
 	public void testeVendedorNullPointerException() throws RegraException {
 
 		vend.setCpf(null);
@@ -70,18 +73,8 @@ public class VendedorRNTest {
 		vend.setCidade(null);
 		vend.setEstado(null);
 		vend.setEmail(null);
-		vend.setId(idNull);
 
 		rnVend.incluir(vend);
-
-	}
-
-	@Test(expected = RegraException.class)
-	public void testValidarIdNull() throws RegraException {
-
-		vend.setId(idNull);
-
-		rnVend.validaIdNull(vend.getId());
 
 	}
 

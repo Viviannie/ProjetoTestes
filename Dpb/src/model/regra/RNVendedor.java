@@ -155,7 +155,7 @@ public class RNVendedor {
 		}
 	}
 
-	public boolean validarNome(Vendedor vendedor) throws RegraException {
+	public boolean validarNome(Vendedor vendedor) {
 
 		return vendedor.getNome().length() > 50;
 

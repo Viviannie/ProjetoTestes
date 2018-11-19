@@ -22,15 +22,6 @@ public class PedidoItensRNTest {
 
 	}
 
-	@Test(expected = RegraException.class)
-	public void testValidarIdNull() throws RegraException {
-
-		pedIt.setId(idNull);
-
-		rnPedIt.validaIdNull(pedIt.getId());
-		
-	}
-
 	@After
 	public void limparCliente() {
 

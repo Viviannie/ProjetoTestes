@@ -44,7 +44,7 @@ public class ClienteRNTest {
 	}
 
 	@Test
-	public void testValidarNomeFantasiaCorreto() throws RegraException {
+	public void testValidarNomeFantasiaCorreto() {
 
 		cli.setNomeFantasia("Multi Descartáveis Plast.");
 
@@ -103,15 +103,6 @@ public class ClienteRNTest {
 		cli.setEmail("annievivianelessadacunhasantanabs@gmail.com");
 
 		assertFalse(rnCli.validarEmail(cli));
-
-	}
-
-	@Test(expected = RegraException.class)
-	public void testValidarIdNull() throws RegraException {
-
-		cli.setId(idNull);
-
-		rnCli.validaIdNull(cli.getId());
 
 	}
 

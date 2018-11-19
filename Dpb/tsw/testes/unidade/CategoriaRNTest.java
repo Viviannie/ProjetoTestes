@@ -70,14 +70,6 @@ public class CategoriaRNTest {
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void testValidarIdNull() throws RegraException {
-
-		cat.setId(idNull);
-		
-		rnCat.validaIdNull(idNull);
-	}
-	
-	@Test(expected = NullPointerException.class)
 	public void testValidarIdNullComValor() throws RegraException {
 
 		cat.setId(10);
