@@ -1,5 +1,6 @@
 package testes.unidade;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -74,6 +75,16 @@ public class CategoriaRNTest {
 		cat.setId(idNull);
 		
 		rnCat.validaIdNull(idNull);
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testValidarIdNullComValor() throws RegraException {
+
+		cat.setId(10);
+		
+		Integer retorno = rnCat.validaIdNull(cat.getId());
+		assertEquals(10, retorno, 0);
+		
 	}
 
 	@After

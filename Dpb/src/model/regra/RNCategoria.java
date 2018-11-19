@@ -129,13 +129,15 @@ public class RNCategoria {
 
 	}
 
-	public void validaIdNull(Integer id) throws RegraException {
+	public Integer validaIdNull(Integer id) throws RegraException {
 
 		if (id == null) {
 
 			throw new RegraException("Id inválido!");
 
 		}
+		
+		return id;
 	}
 
 	public void validaIdExistente(Integer id) throws RegraException {
