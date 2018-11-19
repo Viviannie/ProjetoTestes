@@ -61,23 +61,6 @@ public class VendedorRNTest {
 
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void testeVendedorNullPointerException() throws RegraException {
-
-		vend.setCpf(null);
-		vend.setNome(null);
-		vend.setSenha(null);
-		vend.setLogradouro(null);
-		vend.setNumero(null);
-		vend.setBairro(null);
-		vend.setCidade(null);
-		vend.setEstado(null);
-		vend.setEmail(null);
-
-		rnVend.incluir(vend);
-
-	}
-
 	@After
 	public void limparCliente() {
 

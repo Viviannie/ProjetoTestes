@@ -71,15 +71,6 @@ public class StatusPedidoRNTest {
 
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void testValidarIdNull() throws RegraException {
-
-		stPed.setId(idNull);
-
-		rnStPed.validaIdNull(stPed.getId());
-
-	}
-
 	@After
 	public void limparCliente() {
 
