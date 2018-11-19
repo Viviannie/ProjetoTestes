@@ -1,6 +1,5 @@
 package testes.unidade;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
@@ -25,113 +24,72 @@ public class ClienteRNTest {
 
 	}
 
-	@Test
-	public void testValidarRazaoSocial() {
+	@Test(expected = RegraException.class)
+	public void testValidarRazaoSocial() throws RegraException {
 
 		cli.setRazaoSocial("Descartáveis Multi Plásticos do Brasil Ltda.");
 
-		try {
+		assertTrue("Exceção validar Razão Social Cliente OK!", rnCli.validarRazaoSocial(cli));
 
-			assertTrue("Exceção validar Razão Social Cliente OK!", rnCli.validarRazaoSocial(cli));
-
-		} catch (RegraException e) {
-
-			e.printStackTrace();
-
-		}		
 	}
 
-	@Test
-	public void testValidarNomeFantasia() {
+	@Test(expected = RegraException.class)
+	public void testValidarNomeFantasia() throws RegraException {
 
 		cli.setNomeFantasia("Multi Descartáveis Plásticos.");
 
-		try {
+		assertTrue("Exceção validar Nome Fantasia Cliente OK!", rnCli.validarNomeFantasia(cli));
 
-			assertTrue("Exceção validar Nome Fantasia Cliente OK!", rnCli.validarNomeFantasia(cli));
-
-		} catch (RegraException e) {
-
-			e.printStackTrace();
-
-		}		
 	}
 
-	@Test
-	public void testValidarCnpj() {
+	@Test(expected = RegraException.class)
+	public void testValidarCnpj() throws RegraException {
 
 		cli.setCnpj("1234567891234564");
 
-		try {
+		rnCli.validarCnpj(cli);
 
-			assertTrue("Exceção validar CNPJ Cliente OK!", rnCli.validarCnpj(cli));
-
-		} catch (RegraException e) {
-
-			e.printStackTrace();
-
-		}		
 	}
 
-	@Test
-	public void testValidarEmail() {
+	@Test(expected = RegraException.class)
+	public void testValidarEmail() throws RegraException {
 
 		cli.setEmail("annievivianelessadacunhasantanabezerradasilva@gmail.com");
 
-		try {
+		rnCli.validarEmail(cli);
 
-			assertTrue("Exceção validar E-mail Cliente OK!", rnCli.validarEmail(cli));
-
-		} catch (RegraException e) {
-
-			e.printStackTrace();
-
-		}	
 	}
 
-	@Test
-	public void testValidarDuplicidadeCnpj() {
+//	@Test
+//	public void testValidarDuplicidadeCnpj() {
+//
+//		Cliente cli1 = new Cliente();
+//		Cliente cli2 = new Cliente();
+//
+//		cli1.setCnpj("12345678912345");
+//		cli2.setCnpj("12345678912345");
+//
+//		rnCli.incluir(cli1);
+//		rnCli.incluir(cli2);
+//
+//		assertEquals("Exceção validar Duplicidade CNPJ Cliente OK!", rnCli.verificaDuplicidade(cli1),
+//				rnCli.verificaDuplicidade(cli2));
+//
+//	}
 
-		Cliente cli1 = new Cliente();
-		Cliente cli2 = new Cliente();
-
-		cli1.setCnpj("12345678912345");
-		cli2.setCnpj("12345678912345");		
-
-		try {
-			
-			rnCli.incluir(cli1);
-			rnCli.incluir(cli2);
-			
-			assertEquals("Exceção validar Duplicidade CNPJ Cliente OK!", rnCli.verificaDuplicidade(cli1), rnCli.verificaDuplicidade(cli2));
-			
-		} catch (RegraException e) {
-
-			e.printStackTrace();
-			
-		}		
-	}
-	
 	@Test(expected = NullPointerException.class)
-	public void testValidarIdNull() {				
+	public void testValidarIdNull() throws RegraException {
 
-		try {
-			
-			cli.setId(idNull);
-			
-			rnCli.validaIdNull(cli.getId());
-			
-		} catch (RegraException e) {
-			
-			e.printStackTrace();
-			
-		}
+		cli.setId(idNull);
+
+		rnCli.validaIdNull(cli.getId());
+
 	}
 
 	@After
 	public void limparCliente() {
 
-		cli = new Cliente();		
+		cli = new Cliente();
 
 	}
 }

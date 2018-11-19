@@ -1,8 +1,5 @@
 package testes.unidade;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,66 +21,53 @@ public class ProdutoRNTest {
 		this.rnPro = new RNProduto();
 
 	}
-	
-	@Test
-	public void testValidarDescricao() {
+
+	@Test(expected = RegraException.class)
+	public void testValidarDescricao() throws RegraException {
 
 		pro.setDescricao("ProdutoRN teste descricão.");
 
-		try {
+		rnPro.validarDescricao(pro);
 
-			assertTrue("Exceção validar Descrição Produto OK!", rnPro.validarDescricao(pro));
-
-		} catch (RegraException e) {
-
-			e.printStackTrace();
-
-		}	
 	}
 
-	@Test
-	public void testValidarDuplicidadeId() {
+//	@Test
+//	public void testValidarDuplicidadeId() {
+//
+//		Produto pro1 = new Produto();
+//		Produto pro2 = new Produto();
+//
+//		pro1.setId(1);
+//		pro2.setId(1);
+//
+//		try {
+//
+//			rnPro.incluir(pro1);
+//			rnPro.incluir(pro2);
+//
+//			assertEquals("Exceção validar Duplicidade ID Produto OK!", rnPro.verificaDuplicidade(pro1),
+//					rnPro.verificaDuplicidade(pro2));
+//
+//		} catch (RegraException e) {
+//
+//			e.printStackTrace();
+//
+//		}
+//	}
 
-		Produto pro1 = new Produto();
-		Produto pro2 = new Produto();
+	@Test(expected = RegraException.class)
+	public void testValidarIdNull() throws RegraException {
 
-		pro1.setId(1);
-		pro2.setId(1);		
+		pro.setId(idNull);
 
-		try {
-			
-			rnPro.incluir(pro1);
-			rnPro.incluir(pro2);
-			
-			assertEquals("Exceção validar Duplicidade ID Produto OK!", rnPro.verificaDuplicidade(pro1), rnPro.verificaDuplicidade(pro2));
-			
-		} catch (RegraException e) {
+		rnPro.validaIdNull(pro.getId());
 
-			e.printStackTrace();
-			
-		}		
-	}
-	
-	@Test(expected = NullPointerException.class)
-	public void testValidarIdNull() {			
-
-		try {
-			
-			pro.setId(idNull);
-			
-			rnPro.validaIdNull(pro.getId());
-			
-		} catch (RegraException e) {
-
-			e.printStackTrace();
-			
-		}
 	}
 
 	@After
 	public void limparCliente() {
 
-		pro = new Produto();		
+		pro = new Produto();
 
 	}
 }

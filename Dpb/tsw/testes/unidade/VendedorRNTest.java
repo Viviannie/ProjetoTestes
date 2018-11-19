@@ -1,8 +1,5 @@
 package testes.unidade;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,133 +22,91 @@ public class VendedorRNTest {
 
 	}
 
-	@Test
-	public void testValidarNome() {
+	@Test(expected = RegraException.class)
+	public void testValidarNome() throws RegraException {
 
 		vend.setNome("Annie Viviane Lessa da Cunha Santana Bezerra da Silva");
 
-		try {
+		rnVend.validarNome(vend);
 
-			assertTrue("Exceção validar Nome vendedor OK!", rnVend.validarNome(vend));
-
-		} catch (RegraException e) {
-
-			e.printStackTrace();
-
-		}
 	}
 
-	@Test
-	public void testValidarCpf() {
+	@Test(expected = RegraException.class)
+	public void testValidarCpf() throws RegraException {
 
 		vend.setCpf("123456789523");
 
-		try {
+		rnVend.validarCpf(vend);
 
-			assertTrue("Exceção validar CPF vendedor OK!", rnVend.validarCpf(vend));
-
-		} catch (RegraException e) {
-
-			e.printStackTrace();
-
-		}
 	}
 
-	@Test
-	public void testValidarEmail() {
+	@Test(expected = RegraException.class)
+	public void testValidarEmail() throws RegraException {
 
 		vend.setEmail("annievivianelessadacunhasantanabezerradasilva@gmail.com");
 
-		try {
+		rnVend.validarEmail(vend);
 
-			assertTrue("Exceção validar E-mail vendedor OK!", rnVend.validarEmail(vend));
-
-		} catch (RegraException e) {
-
-			e.printStackTrace();
-
-		}
 	}
 
-	@Test
-	public void testValidarSenha() {
+	@Test(expected = RegraException.class)
+	public void testValidarSenha() throws RegraException {
 
 		vend.setSenha("1234567891234dasdasdhasiuhadsahdsauhsdoiuahsddiuh564");
 
-		try {
+		rnVend.validarSenha(vend);
 
-			assertTrue("Exceção validar Senha vendedor OK!", rnVend.validarSenha(vend));
-
-		} catch (RegraException e) {
-
-			e.printStackTrace();
-
-		}
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void testeVendedorNullPointerException() {
+	@Test(expected = RegraException.class)
+	public void testeVendedorNullPointerException() throws RegraException {
 
-		try {
+		vend.setCpf(null);
+		vend.setNome(null);
+		vend.setSenha(null);
+		vend.setLogradouro(null);
+		vend.setNumero(null);
+		vend.setBairro(null);
+		vend.setCidade(null);
+		vend.setEstado(null);
+		vend.setEmail(null);
+		vend.setId(idNull);
 
-			vend.setCpf(null);
-			vend.setNome(null);
-			vend.setSenha(null);
-			vend.setLogradouro(null);
-			vend.setNumero(null);
-			vend.setBairro(null);
-			vend.setCidade(null);
-			vend.setEstado(null);
-			vend.setEmail(null);
-			vend.setId(idNull);
+		rnVend.incluir(vend);
 
-			rnVend.incluir(vend);
-
-		} catch (RegraException e) {
-
-			e.printStackTrace();
-
-		}
 	}
 
-	@Test
-	public void testValidarDuplicidadeCnpj() {
+//	@Test
+//	public void testValidarDuplicidadeCnpj() {
+//
+//		Vendedor vend1 = new Vendedor();
+//		Vendedor vend2 = new Vendedor();
+//
+//		vend1.setId(1);
+//		vend2.setId(1);
+//
+//		try {
+//
+//			rnVend.incluir(vend1);
+//			rnVend.incluir(vend2);
+//
+//			assertEquals("Exceção validar Duplicidade CNPJ vendedor OK!", rnVend.verificaDuplicidade(vend1),
+//					rnVend.verificaDuplicidade(vend2));
+//
+//		} catch (RegraException e) {
+//
+//			e.printStackTrace();
+//
+//		}
+//	}
 
-		Vendedor vend1 = new Vendedor();
-		Vendedor vend2 = new Vendedor();
+	@Test(expected = RegraException.class)
+	public void testValidarIdNull() throws RegraException {
 
-		vend1.setId(1);
-		vend2.setId(1);
+		vend.setId(idNull);
 
-		try {
+		rnVend.validaIdNull(vend.getId());
 
-			rnVend.incluir(vend1);
-			rnVend.incluir(vend2);
-
-			assertEquals("Exceção validar Duplicidade CNPJ vendedor OK!", rnVend.verificaDuplicidade(vend1),
-					rnVend.verificaDuplicidade(vend2));
-
-		} catch (RegraException e) {
-
-			e.printStackTrace();
-
-		}
-	}
-
-	@Test(expected = NullPointerException.class)
-	public void testValidarIdNull() {
-
-		try {
-
-			vend.setId(idNull);
-
-			rnVend.validaIdNull(vend.getId());
-
-		} catch (RegraException e) {
-
-			e.printStackTrace();
-
-		}
 	}
 
 	@After

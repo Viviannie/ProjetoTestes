@@ -1,7 +1,5 @@
 package testes.unidade;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,10 +21,10 @@ public class PedidoRNTest {
 		this.rnPed = new RNPedido();
 
 	}
-	
-	@Test(expected = NullPointerException.class)
-	public void testePedidoIncluirNulo() {		
-		
+
+	@Test(expected = RegraException.class)
+	public void testePedidoIncluirNulo() throws RegraException {
+
 		ped.setCliente(null);
 		ped.setStatusPedido(null);
 		ped.setVendedor(null);
@@ -34,60 +32,42 @@ public class PedidoRNTest {
 		ped.setDataEnvio(null);
 		ped.setId(idNull);
 
-		try {
+		rnPed.incluir(ped);
 
-			rnPed.incluir(ped);
-
-		} catch (RegraException e) {
-
-			e.printStackTrace();
-
-		}
 	}
 
-	@Test
-	public void testValidarDuplicidadeId() {
+//	@Test
+//	public void testValidarDuplicidadeId() {
+//
+//		Pedido ped1 = new Pedido();
+//		Pedido ped2 = new Pedido();
+//
+//		ped1.setId(1);
+//		ped2.setId(1);
+//
+//		try {
+//
+//			rnPed.incluir(ped1);
+//			rnPed.incluir(ped2);
+//
+//			assertEquals("Exceção validar Dupliciade ID Pedido OK!", rnPed.verificaDuplicidade(ped1),
+//					rnPed.verificaDuplicidade(ped2));
+//
+//	}
 
-		Pedido ped1 = new Pedido();
-		Pedido ped2 = new Pedido();
+	@Test(expected = RegraException.class)
+	public void testValidarIdNull() throws RegraException {
 
-		ped1.setId(1);
-		ped2.setId(1);	
+		ped.setId(idNull);
 
-		try {
-			
-			rnPed.incluir(ped1);
-			rnPed.incluir(ped2);
-			
-			assertEquals("Exceção validar Dupliciade ID Pedido OK!", rnPed.verificaDuplicidade(ped1), rnPed.verificaDuplicidade(ped2));
-			
-		} catch (RegraException e) {
+		rnPed.validaIdNull(ped.getId());
 
-			e.printStackTrace();
-			
-		}		
-	}
-		
-	@Test(expected = NullPointerException.class)
-	public void testValidarIdNull() {				
-
-		try {
-			
-			ped.setId(idNull);
-			
-			rnPed.validaIdNull(ped.getId());
-			
-		} catch (RegraException e) {
-			
-			e.printStackTrace();
-			
-		}
 	}
 
 	@After
 	public void limparCliente() {
 
-		ped = new Pedido();		
+		ped = new Pedido();
 
 	}
 }

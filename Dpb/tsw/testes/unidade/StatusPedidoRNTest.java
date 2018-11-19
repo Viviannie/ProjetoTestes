@@ -1,8 +1,5 @@
 package testes.unidade;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,84 +21,63 @@ public class StatusPedidoRNTest {
 		this.rnStPed = new RNStatusPedido();
 
 	}
-	
-	@Test
-	public void testValidarDescricao() {
-		
+
+	@Test(expected = RegraException.class)
+	public void testValidarDescricao() throws RegraException {
+
 		stPed.setDescricao("StatusPedidoRN teste descricão.");
 
-		try {
+		rnStPed.validarDescricao(stPed);
 
-			assertTrue("Exceção validar Descrição StatusPedido OK!", rnStPed.validarDescricao(stPed));
-
-		} catch (RegraException e) {
-
-			e.printStackTrace();
-
-		}		
 	}
-	
-	@Test(expected = NullPointerException.class)
-	public void testeStatusPedidoNull() {		
+
+	@Test(expected = RegraException.class)
+	public void testeStatusPedidoNull() throws RegraException {
 
 		stPed.setDescricao(null);
 		stPed.setId(idNull);
 
-		try {
-			
-			rnStPed.incluir(stPed);
-			
-		} catch (RegraException e) {
+		rnStPed.incluir(stPed);
 
-			e.printStackTrace();
-			
-		}
 	}
 
-	@Test
-	public void testValidarDuplicidadeId() {
+//	@Test
+//	public void testValidarDuplicidadeId() {
+//
+//		StatusPedido statPed1 = new StatusPedido();
+//		StatusPedido statPed2 = new StatusPedido();
+//
+//		statPed1.setId(1);
+//		statPed2.setId(1);
+//
+//		try {
+//
+//			rnStPed.incluir(statPed1);
+//			rnStPed.incluir(statPed2);
+//
+//			assertEquals("Pedido já existe.", rnStPed.verificaDuplicidade(statPed1),
+//					rnStPed.verificaDuplicidade(statPed2));
+//
+//		} catch (RegraException e) {
+//
+//			e.printStackTrace();
+//
+//		}
+//	}
 
-		StatusPedido statPed1 = new StatusPedido();
-		StatusPedido statPed2 = new StatusPedido();
+	@Test(expected = RegraException.class)
+	public void testValidarIdNull() throws RegraException {
 
-		statPed1.setId(1);
-		statPed2.setId(1);	
+		stPed.setId(idNull);
 
-		try {
-			
-			rnStPed.incluir(statPed1);
-			rnStPed.incluir(statPed2);
-			
-			assertEquals("Pedido já existe.", rnStPed.verificaDuplicidade(statPed1), rnStPed.verificaDuplicidade(statPed2));
-			
-		} catch (RegraException e) {
+		rnStPed.validaIdNull(stPed.getId());
 
-			e.printStackTrace();
-			
-		}		
-	}
-	
-	@Test(expected = NullPointerException.class)
-	public void testValidarIdNull() {
-		
-		try {
-			
-			Integer id = null;
-			stPed.setId(id);
-			
-			rnStPed.validaIdNull(stPed.getId());
-			
-		} catch (RegraException e) {
-
-			e.printStackTrace();
-			
-		}		
 	}
 
 	@After
 	public void limparCliente() {
 
-		stPed = new StatusPedido();		
+		stPed = new StatusPedido();
 
 	}
 }
