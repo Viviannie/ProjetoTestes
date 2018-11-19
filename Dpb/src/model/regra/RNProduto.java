@@ -118,7 +118,7 @@ public class RNProduto {
 		}			
 	}
 	
-	public boolean validarDescricao(Produto produto) throws RegraException {
+	public boolean validarDescricao(Produto produto) {
 		
 		return produto.getDescricao().length() > 25;
 		

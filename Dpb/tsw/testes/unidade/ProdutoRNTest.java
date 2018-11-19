@@ -1,9 +1,13 @@
 package testes.unidade;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import model.classesbasicas.Categoria;
 import model.classesbasicas.Produto;
 import model.excecoes.RegraException;
 import model.regra.RNProduto;
@@ -22,16 +26,39 @@ public class ProdutoRNTest {
 
 	}
 
-	@Test(expected = RegraException.class)
-	public void testValidarDescricao() throws RegraException {
+	@Test
+	public void testValidarDescricaoMenorQue25Caracteres() {
 
-		pro.setDescricao("ProdutoRN teste descricão.");
+		pro.setDescricao("ProdutoRN descricão.");
 
-		rnPro.validarDescricao(pro);
+		assertFalse(rnPro.validarDescricao(pro));
+
+	}
+	
+	@Test
+	public void testValidarDescricaoMaiorQue25Caracteres() {
+
+		pro.setDescricao("ProdutoRN teste descricão JUnit.");
+
+		assertTrue(rnPro.validarDescricao(pro));
 
 	}
 	
 	@Test(expected = RegraException.class)
+	public void testValidarValorProdutoIgualAZero() throws RegraException {
+
+		pro.setPrecoUnitario(0.0);
+		pro.setDescricao("Descricao");
+		
+		Categoria cat = new Categoria();
+		cat.setId(1);
+		pro.setCategoria(cat);
+
+		pro.setAtivo('1');
+		rnPro.validarCampos(pro);
+	}
+	
+	@Test(expected = NullPointerException.class)
 	public void testValidarIdNull() throws RegraException {
 
 		pro.setId(idNull);

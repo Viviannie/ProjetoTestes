@@ -22,21 +22,19 @@ public class PedidoRNTest {
 
 	}
 
-	@Test(expected = RegraException.class)
-	public void testePedidoIncluirNulo() throws RegraException {
+	@Test(expected = NullPointerException.class)
+	public void testeValidacaoDosCampos() throws RegraException {
 
 		ped.setCliente(null);
 		ped.setStatusPedido(null);
-		ped.setVendedor(null);
-		ped.setDataPedido(null);
-		ped.setDataEnvio(null);
+		ped.setVendedor(null);;
 		ped.setId(idNull);
 
 		rnPed.incluir(ped);
 
 	}
 
-	@Test(expected = RegraException.class)
+	@Test(expected = NullPointerException.class)
 	public void testValidarIdNull() throws RegraException {
 
 		ped.setId(idNull);
