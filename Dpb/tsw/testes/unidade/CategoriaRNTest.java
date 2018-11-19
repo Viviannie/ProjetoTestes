@@ -1,6 +1,6 @@
 package testes.unidade;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
@@ -25,66 +25,77 @@ public class CategoriaRNTest {
 
 	}
 
-	@Test
-	public void testValidarDescricao() {
+	@Test(expected = RegraException.class) 
+	public void testValidarDescricao() throws RegraException {
 
 		cat.setDescricao("Categoria a confirmar porque esse é só um exemplo para teste.");
+		rnCat.validarDescricao(cat);
 
-		try {
-
-			assertTrue("Exceção validar descrição categoria OK!", rnCat.validarDescricao(cat));
-
-		} catch (RegraException e) {
-
-			e.printStackTrace();
-
-		}		
-	}	
-
-	@Test
-	public void testValidarDuplicidadeCategoria() {
-
-		Categoria cat1 = new Categoria();
-		Categoria cat2 = new Categoria();
-
-		cat1.setId(1);
-		cat2.setId(1);	
-
-		try {
-
-			rnCat.incluir(cat1);
-			rnCat.incluir(cat2);
-
-			assertEquals("Exceção validar duplicidade categoria OK!", rnCat.verificaDuplicidade(cat1), rnCat.verificaDuplicidade(cat2));
-
-
-		} catch (RegraException e) {
-
-			e.printStackTrace();
-
-		}		
 	}
 	
+	@Test
+	public void testValidarTamanhoDescricaoMaiorQueOPermitido() throws RegraException {
+
+		cat.setDescricao("Caracteres da Categoria maior do que 25 caracteres é um exemplo para teste.");
+		boolean retorno = rnCat.validarDescricao(cat);
+		assertTrue(retorno);
+
+	}
+	
+	@Test
+	public void testValidarTamanhoDescricaoDeAcordoComOPermitido() throws RegraException {
+
+		cat.setDescricao("Caracteres da Categoria.");
+		boolean retorno = rnCat.validarDescricao(cat);
+		assertFalse(retorno);
+
+	}
+	
+	@Test(expected = RegraException.class) 
+	public void testValidarCamposComErro() throws RegraException {
+
+		cat.setDescricao(null);
+		rnCat.validarCampos(cat);
+
+	}
+	
+	@Test(expected = RegraException.class) 
+	public void testValidarCamposCorreto() throws RegraException {
+
+		cat.setDescricao("Descrição da Categoria");
+		rnCat.validarCampos(cat);
+
+	}
+	
+// Esse teste é Funcional.
+//	@Test (expected = RegraException.class) 
+//	public void testValidarDuplicidadeCategoria() throws RegraException {
+//
+//		Categoria cat1 = new Categoria();
+//		Categoria cat2 = new Categoria();
+//
+//		cat1.setId(1);
+//		cat2.setId(1);
+//
+//		rnCat.incluir(cat1);
+//		rnCat.incluir(cat2);
+//
+//		rnCat.verificaDuplicidade(cat1); // conversar com Jefferson.
+//
+//	}
+
 	@Test(expected = NullPointerException.class)
-	public void testValidarIdNull() {
+	public void testValidarIdNull() throws RegraException {
 
-		try {
+		cat.setId(idNull);
 		
-			cat.setId(idNull);
-			
-			rnCat.validaIdNull(cat.getId());
-			
-		} catch (RegraException e) {
-
-			e.printStackTrace();
-			
-		}		
+		rnCat.validaIdNull(idNull);
 	}
 
 	@After
 	public void limparCategoria() {
 
-		cat = new Categoria();		
+		cat = new Categoria();
 
 	}
 }
