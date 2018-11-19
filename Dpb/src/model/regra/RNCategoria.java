@@ -101,9 +101,9 @@ public class RNCategoria {
 		}
 	}
 
-	public boolean validarDescricao(Categoria categoria) throws RegraException {
+	public boolean validarDescricao(Categoria categoria) {
 
-		return categoria.getDescricao().length() > 25;
+		return (categoria.getDescricao().length() > 25);
 
 	}
 

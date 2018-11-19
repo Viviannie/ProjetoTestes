@@ -60,23 +60,6 @@ public class ClienteRNTest {
 
 	}
 
-//	@Test
-//	public void testValidarDuplicidadeCnpj() {
-//
-//		Cliente cli1 = new Cliente();
-//		Cliente cli2 = new Cliente();
-//
-//		cli1.setCnpj("12345678912345");
-//		cli2.setCnpj("12345678912345");
-//
-//		rnCli.incluir(cli1);
-//		rnCli.incluir(cli2);
-//
-//		assertEquals("Exceção validar Duplicidade CNPJ Cliente OK!", rnCli.verificaDuplicidade(cli1),
-//				rnCli.verificaDuplicidade(cli2));
-//
-//	}
-
 	@Test(expected = NullPointerException.class)
 	public void testValidarIdNull() throws RegraException {
 

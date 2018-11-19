@@ -76,30 +76,6 @@ public class VendedorRNTest {
 
 	}
 
-//	@Test
-//	public void testValidarDuplicidadeCnpj() {
-//
-//		Vendedor vend1 = new Vendedor();
-//		Vendedor vend2 = new Vendedor();
-//
-//		vend1.setId(1);
-//		vend2.setId(1);
-//
-//		try {
-//
-//			rnVend.incluir(vend1);
-//			rnVend.incluir(vend2);
-//
-//			assertEquals("Exceção validar Duplicidade CNPJ vendedor OK!", rnVend.verificaDuplicidade(vend1),
-//					rnVend.verificaDuplicidade(vend2));
-//
-//		} catch (RegraException e) {
-//
-//			e.printStackTrace();
-//
-//		}
-//	}
-
 	@Test(expected = RegraException.class)
 	public void testValidarIdNull() throws RegraException {
 

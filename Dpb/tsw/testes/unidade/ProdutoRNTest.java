@@ -40,30 +40,6 @@ public class ProdutoRNTest {
 
 	}
 
-//	@Test
-//	public void testValidarDuplicidadeId() {
-//
-//		Produto pro1 = new Produto();
-//		Produto pro2 = new Produto();
-//
-//		pro1.setId(1);
-//		pro2.setId(1);
-//
-//		try {
-//
-//			rnPro.incluir(pro1);
-//			rnPro.incluir(pro2);
-//
-//			assertEquals("Exceção validar Duplicidade ID Produto OK!", rnPro.verificaDuplicidade(pro1),
-//					rnPro.verificaDuplicidade(pro2));
-//
-//		} catch (RegraException e) {
-//
-//			e.printStackTrace();
-//
-//		}
-//	}
-
 	@After
 	public void limparCliente() {
 

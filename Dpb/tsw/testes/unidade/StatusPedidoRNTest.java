@@ -41,30 +41,6 @@ public class StatusPedidoRNTest {
 
 	}
 
-//	@Test
-//	public void testValidarDuplicidadeId() {
-//
-//		StatusPedido statPed1 = new StatusPedido();
-//		StatusPedido statPed2 = new StatusPedido();
-//
-//		statPed1.setId(1);
-//		statPed2.setId(1);
-//
-//		try {
-//
-//			rnStPed.incluir(statPed1);
-//			rnStPed.incluir(statPed2);
-//
-//			assertEquals("Pedido já existe.", rnStPed.verificaDuplicidade(statPed1),
-//					rnStPed.verificaDuplicidade(statPed2));
-//
-//		} catch (RegraException e) {
-//
-//			e.printStackTrace();
-//
-//		}
-//	}
-
 	@Test(expected = RegraException.class)
 	public void testValidarIdNull() throws RegraException {
 

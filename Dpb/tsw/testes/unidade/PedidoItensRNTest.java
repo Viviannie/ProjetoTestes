@@ -22,23 +22,6 @@ public class PedidoItensRNTest {
 
 	}
 
-//	@Test
-//	public void testValidarDuplicidadeId() {
-//
-//		PedidoItens pedIt1 = new PedidoItens();
-//		PedidoItens pedIt2 = new PedidoItens();
-//
-//		pedIt1.setId(1);
-//		pedIt2.setId(1);
-//
-//		rnPedIt.incluir(pedIt1);
-//		rnPedIt.incluir(pedIt2);
-//
-//		assertEquals("Exceção validar Duplicidade ID PedidoItens OK!", rnPedIt.verificaDuplicidade(pedIt1),
-//				rnPedIt.verificaDuplicidade(pedIt2));
-//
-//	}
-
 	@Test(expected = RegraException.class)
 	public void testValidarIdNull() throws RegraException {
 

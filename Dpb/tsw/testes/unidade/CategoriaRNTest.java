@@ -25,11 +25,12 @@ public class CategoriaRNTest {
 
 	}
 
-	@Test(expected = RegraException.class) 
-	public void testValidarDescricao() throws RegraException {
+	@Test
+	public void testValidarDescricao() {
 
 		cat.setDescricao("Categoria a confirmar porque esse é só um exemplo para teste.");
-		rnCat.validarDescricao(cat);
+		boolean retorno = rnCat.validarDescricao(cat);
+		assertFalse(retorno);
 
 	}
 	
@@ -66,23 +67,6 @@ public class CategoriaRNTest {
 		rnCat.validarCampos(cat);
 
 	}
-	
-// Esse teste é Funcional.
-//	@Test (expected = RegraException.class) 
-//	public void testValidarDuplicidadeCategoria() throws RegraException {
-//
-//		Categoria cat1 = new Categoria();
-//		Categoria cat2 = new Categoria();
-//
-//		cat1.setId(1);
-//		cat2.setId(1);
-//
-//		rnCat.incluir(cat1);
-//		rnCat.incluir(cat2);
-//
-//		rnCat.verificaDuplicidade(cat1); // conversar com Jefferson.
-//
-//	}
 
 	@Test(expected = NullPointerException.class)
 	public void testValidarIdNull() throws RegraException {
