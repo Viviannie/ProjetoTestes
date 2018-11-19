@@ -13,23 +13,6 @@ public class Cliente {
 	private String estado;
 	private String email;
 
-//	public Cliente(String razaoSocial, String nomeFantasia, String cnpj, String logradouro, String numero, String bairro, String cidade, String estado, String email) {
-//
-//		this.razaoSocial = razaoSocial;
-//		this.nomeFantasia = nomeFantasia;
-//		this.cnpj = cnpj;
-//		this.logradouro = logradouro;
-//		this.numero = numero;
-//		this.bairro = bairro;
-//		this.cidade = cidade;
-//		this.estado = estado;
-//		this.email = email;
-//
-//	}
-
-	public Cliente() {
-	}
-
 	public int getId() {
 		return id;
 	}

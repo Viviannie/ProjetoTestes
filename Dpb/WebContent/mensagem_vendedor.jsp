@@ -14,7 +14,7 @@
 		<div class="container">
 		
 		
-		<h1>Salvo com sucesso!</h1>
+		<h1>Vendedor salvo com sucesso!</h1>
 			
 			<br>
 		

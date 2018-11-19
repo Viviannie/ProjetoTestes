@@ -24,7 +24,6 @@ public class CadastroVendedor extends HttpServlet {
 
 	RequestDispatcher rd = null;
 
-	//Na página lista_vendedores
 	protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		response.setContentType("text/html");
