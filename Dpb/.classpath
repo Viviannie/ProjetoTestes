@@ -73,6 +73,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/mockito-core-2.23.0.jar"/>
+	<classpathentry kind="lib" path="lib/mockito-all-1.10.19.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
