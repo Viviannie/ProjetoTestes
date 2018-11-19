@@ -101,7 +101,7 @@ public class RNStatusPedido {
 		}
 	}
 
-	public boolean validarDescricao(StatusPedido statusPedido) throws RegraException {
+	public boolean validarDescricao(StatusPedido statusPedido) {
 
 		return statusPedido.getDescricao().length() > 25;
 
