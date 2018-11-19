@@ -91,25 +91,25 @@ public class RNCliente {
 		}
 	}
 
-	public boolean validarRazaoSocial(Cliente cliente) throws RegraException {
+	public boolean validarRazaoSocial(Cliente cliente) {
 
 		return cliente.getRazaoSocial().trim().length() > 40;
 
 	}
 
-	public boolean validarNomeFantasia(Cliente cliente) throws RegraException {
+	public boolean validarNomeFantasia(Cliente cliente) {
 
 		return cliente.getNomeFantasia().trim().length() > 20;
 
 	}
 
-	public boolean validarCnpj(Cliente cliente) throws RegraException {
+	public boolean validarCnpj(Cliente cliente) {
 
-		return cliente.getCnpj().trim().length() > 14;
+		return cliente.getCnpj().trim().length() != 14;
 
 	}
 
-	public boolean validarEmail(Cliente cliente) throws RegraException {
+	public boolean validarEmail(Cliente cliente) {
 
 		return cliente.getEmail().trim().length() > 50;
 

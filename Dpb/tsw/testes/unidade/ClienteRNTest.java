@@ -1,5 +1,6 @@
 package testes.unidade;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
@@ -24,43 +25,88 @@ public class ClienteRNTest {
 
 	}
 
-	@Test(expected = RegraException.class)
-	public void testValidarRazaoSocial() throws RegraException {
+	@Test
+	public void testValidarRazaoSocialCorreto() {
+
+		cli.setRazaoSocial("Descartáveis Multi Plásticos do Br Ltda.");
+
+		assertFalse(rnCli.validarRazaoSocial(cli));
+
+	}
+	
+	@Test
+	public void testValidarRazaoSocialComMaisDe40Caracteres() {
 
 		cli.setRazaoSocial("Descartáveis Multi Plásticos do Brasil Ltda.");
 
-		assertTrue("Exceção validar Razão Social Cliente OK!", rnCli.validarRazaoSocial(cli));
+		assertTrue(rnCli.validarRazaoSocial(cli));
 
 	}
 
-	@Test(expected = RegraException.class)
-	public void testValidarNomeFantasia() throws RegraException {
+	@Test
+	public void testValidarNomeFantasiaCorreto() throws RegraException {
 
-		cli.setNomeFantasia("Multi Descartáveis Plásticos.");
+		cli.setNomeFantasia("Multi Descartáveis Plast.");
 
-		assertTrue("Exceção validar Nome Fantasia Cliente OK!", rnCli.validarNomeFantasia(cli));
+		assertFalse(rnCli.validarNomeFantasia(cli));
+
+	}
+	
+	@Test
+	public void testValidarNomeFantasiaComMaisDe20Caracteres() throws RegraException {
+
+		cli.setNomeFantasia("Multi Descartáveis Plásticos do Brasil.");
+
+		assertTrue(rnCli.validarNomeFantasia(cli));
+
+	}
+	
+	@Test
+	public void testValidarCnpjCom14Caracteres() {
+
+		cli.setCnpj("12345678912345");
+
+		assertFalse(rnCli.validarCnpj(cli));
+
+	}
+	
+	@Test
+	public void testValidarCnpjComMenosDe14Caracteres() {
+
+		cli.setCnpj("1234567891234");
+
+		assertTrue(rnCli.validarCnpj(cli));
 
 	}
 
-	@Test(expected = RegraException.class)
-	public void testValidarCnpj() throws RegraException {
+	@Test
+	public void testValidarCnpjComMaisDe14Caracteres() {
 
 		cli.setCnpj("1234567891234564");
 
-		rnCli.validarCnpj(cli);
+		assertTrue(rnCli.validarCnpj(cli));
+
+	}
+
+	@Test
+	public void testValidarEmailComMaisDe50Caracteres() throws RegraException {
+
+		cli.setEmail("annievivianelessadacunhasantanabezerradasilva@gmail.com");
+
+		assertTrue(rnCli.validarEmail(cli));
+
+	}
+	
+	@Test
+	public void testValidarEmailComMenosDe50Caracteres() throws RegraException {
+
+		cli.setEmail("annievivianelessadacunhasantanabs@gmail.com");
+
+		assertFalse(rnCli.validarEmail(cli));
 
 	}
 
 	@Test(expected = RegraException.class)
-	public void testValidarEmail() throws RegraException {
-
-		cli.setEmail("annievivianelessadacunhasantanabezerradasilva@gmail.com");
-
-		rnCli.validarEmail(cli);
-
-	}
-
-	@Test(expected = NullPointerException.class)
 	public void testValidarIdNull() throws RegraException {
 
 		cli.setId(idNull);
