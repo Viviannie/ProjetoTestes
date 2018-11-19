@@ -30,6 +30,15 @@ public class ProdutoRNTest {
 		rnPro.validarDescricao(pro);
 
 	}
+	
+	@Test(expected = RegraException.class)
+	public void testValidarIdNull() throws RegraException {
+
+		pro.setId(idNull);
+
+		rnPro.validaIdNull(pro.getId());
+
+	}
 
 //	@Test
 //	public void testValidarDuplicidadeId() {
@@ -54,15 +63,6 @@ public class ProdutoRNTest {
 //
 //		}
 //	}
-
-	@Test(expected = RegraException.class)
-	public void testValidarIdNull() throws RegraException {
-
-		pro.setId(idNull);
-
-		rnPro.validaIdNull(pro.getId());
-
-	}
 
 	@After
 	public void limparCliente() {
