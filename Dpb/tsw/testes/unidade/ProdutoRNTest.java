@@ -58,6 +58,34 @@ public class ProdutoRNTest {
 		rnPro.validarCampos(pro);
 	}
 	
+	@Test(expected = RegraException.class)
+	public void testValidarCamposProdutoAtivoIgualAZero() throws RegraException {
+
+		pro.setPrecoUnitario(10.0);
+		pro.setDescricao("Descricao");
+		
+		Categoria cat = new Categoria();
+		cat.setId(1);
+		pro.setCategoria(cat);
+
+		pro.setAtivo('0');
+		rnPro.validarCampos(pro);
+	}
+	
+	@Test(expected = RegraException.class)
+	public void testValidarCamposProdutoDescricaoNula() throws RegraException {
+
+		pro.setPrecoUnitario(10.0);
+		pro.setDescricao(null);
+		
+		Categoria cat = new Categoria();
+		cat.setId(1);
+		pro.setCategoria(cat);
+
+		pro.setAtivo('1');
+		rnPro.validarCampos(pro);
+	}
+	
 	@Test(expected = NullPointerException.class)
 	public void testValidarIdNull() throws RegraException {
 
