@@ -161,19 +161,19 @@ public class RNVendedor {
 
 	}
 
-	public boolean validarCpf(Vendedor vendedor) throws RegraException {
+	public boolean validarCpf(Vendedor vendedor) {
 
-		return vendedor.getCpf().length() > 11;
+		return vendedor.getCpf().length() != 14;
 
 	}
 
-	public boolean validarEmail(Vendedor vendedor) throws RegraException {
+	public boolean validarEmail(Vendedor vendedor) {
 
 		return vendedor.getEmail().length() > 50;
 
 	}
 
-	public boolean validarSenha(Vendedor vendedor) throws RegraException {
+	public boolean validarSenha(Vendedor vendedor) {
 
 		return vendedor.getSenha().length() > 32;
 

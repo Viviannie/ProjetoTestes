@@ -34,15 +34,6 @@ public class PedidoRNTest {
 
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void testValidarIdNull() throws RegraException {
-
-		ped.setId(idNull);
-
-		rnPed.validaIdNull(ped.getId());
-
-	}
-
 	@After
 	public void limparCliente() {
 

@@ -92,7 +92,7 @@ public class RNPedidoItens {
 
 		}
 
-		if (pedidoItens.getPrecoUnitario() == 0.0) {
+		if (pedidoItens.getPrecoUnitario() <= 0.0) {
 
 			throw new RegraException("Preço unitário inválido!");
 

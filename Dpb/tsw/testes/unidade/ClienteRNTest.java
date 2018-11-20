@@ -35,20 +35,19 @@ public class ClienteRNTest {
 	}
 	
 	@Test
+	public void testValidarNomeFantasiaCorreto() {
+
+		cli.setNomeFantasia("Multi Descartáveis");
+		assertFalse(rnCli.validarNomeFantasia(cli));
+
+	}
+	
+	@Test
 	public void testValidarRazaoSocialComMaisDe40Caracteres() {
 
 		cli.setRazaoSocial("Descartáveis Multi Plásticos do Brasil Ltda.");
 
 		assertTrue(rnCli.validarRazaoSocial(cli));
-
-	}
-
-	@Test
-	public void testValidarNomeFantasiaCorreto() {
-
-		cli.setNomeFantasia("Multi Descartáveis Plast.");
-
-		assertFalse(rnCli.validarNomeFantasia(cli));
 
 	}
 	

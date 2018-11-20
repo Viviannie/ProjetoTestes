@@ -1,5 +1,6 @@
 package testes.unidade;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
@@ -7,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import model.classesbasicas.Vendedor;
-import model.excecoes.RegraException;
 import model.regra.RNVendedor;
 
 public class VendedorRNTest {
@@ -25,39 +25,83 @@ public class VendedorRNTest {
 	}
 
 	@Test
-	public void testValidarNome() {
+	public void testValidarNomeComMaisDe50Caracteres() {
 
 		vend.setNome("Annie Viviane Lessa da Cunha Santana Bezerra da Silva");
 
-		boolean retorno = rnVend.validarNome(vend);
-		assertTrue(retorno);
+		assertTrue(rnVend.validarNome(vend));
+
+	}
+	
+	@Test
+	public void testValidarNomeComMenosDe50Caracteres() {
+
+		vend.setNome("Vendedor JUnit");
+
+		assertFalse(rnVend.validarNome(vend));
 
 	}
 
-	@Test(expected = RegraException.class)
-	public void testValidarCpf() throws RegraException {
+	@Test
+	public void testValidarCpfComMaisDe14Caracteres() {
 
-		vend.setCpf("123456789523");
+		vend.setCpf("1234567895236400");
 
-		rnVend.validarCpf(vend);
+		assertTrue(rnVend.validarCpf(vend));
+
+	}
+	
+	@Test
+	public void testValidarCpfComMenosDe14Caracteres() {
+
+		vend.setCpf("12345678950");
+
+		assertTrue(rnVend.validarCpf(vend));
+
+	}
+	
+	@Test
+	public void testValidarCpfCom14Caracteres() {
+
+		vend.setCpf("12345678952364");
+
+		assertFalse(rnVend.validarCpf(vend));
 
 	}
 
-	@Test(expected = RegraException.class)
-	public void testValidarEmail() throws RegraException {
+	@Test
+	public void testValidarEmailMaiorQue50() {
 
 		vend.setEmail("annievivianelessadacunhasantanabezerradasilva@gmail.com");
 
-		rnVend.validarEmail(vend);
+		assertTrue(rnVend.validarEmail(vend));
 
 	}
 
-	@Test(expected = RegraException.class)
-	public void testValidarSenha() throws RegraException {
+	@Test
+	public void testValidarSenhaComMaisDe32Caracteres() {
 
 		vend.setSenha("1234567891234dasdasdhasiuhadsahdsauhsdoiuahsddiuh564");
 
-		rnVend.validarSenha(vend);
+		assertTrue(rnVend.validarSenha(vend));
+
+	}
+	
+	@Test
+	public void testValidarSenhaComMenos32Caracteres() {
+
+		vend.setSenha("1234567891234dasdasdhasah");
+
+		assertFalse(rnVend.validarSenha(vend));
+
+	}
+	
+	@Test
+	public void testValidarSenhaCom32Caracteres() {
+
+		vend.setSenha("1234567891234dasdasdhasiuhadsah");
+
+		assertFalse(rnVend.validarSenha(vend));
 
 	}
 

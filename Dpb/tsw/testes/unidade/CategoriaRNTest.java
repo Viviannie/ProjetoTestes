@@ -25,15 +25,6 @@ public class CategoriaRNTest {
 		this.cat = new Categoria();
 
 	}
-
-	@Test
-	public void testValidarDescricao() {
-
-		cat.setDescricao("Categoria a confirmar porque esse é só um exemplo para teste.");
-		boolean retorno = rnCat.validarDescricao(cat);
-		assertFalse(retorno);
-
-	}
 	
 	@Test
 	public void testValidarTamanhoDescricaoMaiorQueOPermitido() throws RegraException {
@@ -61,7 +52,7 @@ public class CategoriaRNTest {
 
 	}
 	
-	@Test(expected = RegraException.class) 
+	@Test
 	public void testValidarCamposCorreto() throws RegraException {
 
 		cat.setDescricao("Descrição da Categoria");
@@ -69,8 +60,8 @@ public class CategoriaRNTest {
 
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void testValidarIdNullComValor() throws RegraException {
+	@Test
+	public void testValidarComValor() throws RegraException {
 
 		cat.setId(10);
 		
